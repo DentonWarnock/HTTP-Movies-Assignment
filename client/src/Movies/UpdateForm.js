@@ -9,6 +9,17 @@ const UpdateForm = props => {
     stars: []
   };
   const [input, setInput] = useState(initialState);
+  console.log("UpdateForm.js, input: BEFORE UPDATE: ", input);
+  const [error, setError] = useState("");
+
+  const id = Number(props.match.params.id);
+
+  useState(() => {
+    axios
+      .get(`http://localhost:5000/api/movies/${id}`)
+      .then(res => setInput(res.data))
+      .catch(err => console.log(err.response));
+  }, [props.match.params.id]);
 
   const handleChange = e => {
     setInput({
@@ -17,9 +28,36 @@ const UpdateForm = props => {
     });
   };
 
+  const handleStars = e => {
+    setInput({
+      ...input,
+      stars: [e.target.value]
+    });
+  };
+
+  const convertStarsArray = () => {
+    const newStarsArray = input.stars.split(",");
+    console.log("UpdateForm.js, newStarsArray: ", newStarsArray);
+    setInput({ ...input, stars: newStarsArray });
+    return newStarsArray;
+  };
+
   const handleUpdate = e => {
     e.preventDefault();
-    axios.put(``);
+    // const newStarsArray = input.stars.split(",");
+    // console.log("UpdateForm.js, newStarsArray: ", newStarsArray);
+    // setInput({ ...input, stars: newStarsArray });
+    // convertStarsArray();
+    // setInput({ ...input, stars: convertStarsArray() });
+    console.log("UpdateForm.js, input: AFTER UPDATE: ", input);
+
+    axios
+      .put(`http://localhost:5000/api/movies/${id}`, input)
+      .then(res => {
+        console.log(res.data);
+        props.history.push("/");
+      })
+      .catch(err => console.log(err));
   };
 
   return (
@@ -59,12 +97,13 @@ const UpdateForm = props => {
             className="stars"
             type="text"
             value={input.stars}
-            onChange={handleChange}
+            onChange={handleStars}
           />
         </label>
         <button className="update-btn" onClick={handleUpdate}>
           Update Movie
         </button>
+        {error && <div className=".movie-warning">{error}</div>}
       </form>
     </div>
   );
