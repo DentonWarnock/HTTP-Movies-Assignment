@@ -140,3 +140,47 @@ input {
   background: dodgerblue;
   cursor: pointer;
 }
+
+.title {
+  margin-top: 50px;
+}
+
+.areYouSure {
+  width: 60%;
+  margin: 3rem auto;
+}
+
+.areYouSure span {
+  color: dodgerblue;
+}
+
+.yes-btn {
+  display: inline-block;
+  margin: 0 2rem;
+  background-color: red;
+  border: none;
+  height: 2rem;
+  width: 7rem;
+  border-radius: 2rem;
+}
+
+.yes-btn:hover {
+  cursor: pointer;
+  color: white;
+}
+
+.no-btn {
+  display: inline-block;
+  margin: 0 2rem;
+  background-color: green;
+  border: none;
+  height: 2rem;
+  width: 7rem;
+  border-radius: 2rem;
+  text-align: center;
+}
+
+.no-btn:hover {
+  cursor: pointer;
+  color: white;
+}

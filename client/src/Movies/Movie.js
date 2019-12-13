@@ -6,6 +6,7 @@ export default class Movie extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      areYouSure: false,
       movie: null
     };
   }
@@ -42,13 +43,42 @@ export default class Movie extends React.Component {
       .catch(err => console.log(err));
   };
 
-  // handleDelete = () => {
-
-  // }
+  handleDelete = () => {
+    this.setState({ areYouSure: !this.state.areYouSure });
+  };
 
   render() {
     if (!this.state.movie) {
       return <div>Loading movie information...</div>;
+    }
+
+    if (this.state.areYouSure) {
+      return (
+        <div className="areYouSure">
+          <h2>
+            Are you sure you want to delete{" "}
+            <span>{this.state.movie.title}</span> from the movie list?
+          </h2>
+          <button
+            className="yes-btn"
+            onClick={() => {
+              this.setState({ areYouSure: !this.state.areYouSure });
+              this.deleteMovie();
+            }}
+          >
+            Yes
+          </button>
+          <button
+            className="no-btn"
+            onClick={() => {
+              this.setState({ areYouSure: !this.state.areYouSure });
+              this.props.history.push(`/movies/${this.state.movie.id}`);
+            }}
+          >
+            No
+          </button>
+        </div>
+      );
     }
 
     return (
@@ -63,7 +93,7 @@ export default class Movie extends React.Component {
         >
           Edit
         </Link>
-        <div className="delete-button" onClick={() => this.deleteMovie()}>
+        <div className="delete-button" onClick={() => this.handleDelete()}>
           Delete
         </div>
       </div>
