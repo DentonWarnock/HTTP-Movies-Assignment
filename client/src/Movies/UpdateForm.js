@@ -22,40 +22,28 @@ const UpdateForm = props => {
   }, [props.match.params.id]);
 
   const handleChange = e => {
-    setInput({
-      ...input,
-      [e.target.name]: e.target.value
-    });
-  };
-
-  const handleStars = e => {
-    setInput({
-      ...input,
-      stars: [e.target.value]
-    });
-  };
-
-  const convertStarsArray = () => {
-    const newStarsArray = input.stars.split(",");
-    console.log("UpdateForm.js, newStarsArray: ", newStarsArray);
-    setInput({ ...input, stars: newStarsArray });
-    return newStarsArray;
+    if (e.target.name === "stars") {
+      setInput({
+        ...input,
+        stars: [e.target.value]
+      });
+    } else {
+      setInput({
+        ...input,
+        [e.target.name]: e.target.value
+      });
+    }
   };
 
   const handleUpdate = e => {
     e.preventDefault();
-    // const newStarsArray = input.stars.split(",");
-    // console.log("UpdateForm.js, newStarsArray: ", newStarsArray);
-    // setInput({ ...input, stars: newStarsArray });
-    // convertStarsArray();
-    // setInput({ ...input, stars: convertStarsArray() });
-    console.log("UpdateForm.js, input: AFTER UPDATE: ", input);
 
     axios
       .put(`http://localhost:5000/api/movies/${id}`, input)
       .then(res => {
         console.log(res.data);
-        props.history.push("/");
+        // props.history.push("/");
+        props.history.goBack();
       })
       .catch(err => console.log(err));
   };
@@ -97,7 +85,7 @@ const UpdateForm = props => {
             className="stars"
             type="text"
             value={input.stars}
-            onChange={handleStars}
+            onChange={handleChange}
           />
         </label>
         <button className="update-btn" onClick={handleUpdate}>
