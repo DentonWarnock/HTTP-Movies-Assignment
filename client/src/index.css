@@ -56,7 +56,7 @@ body {
 .save-button {
   position: absolute;
   top: 25px;
-  right: 25px;
+  right: 150px;
   border: 1px solid grey;
   padding: 5px 10px;
   background-color: lightseagreen;
@@ -64,6 +64,7 @@ body {
 .save-button:hover {
   background-color: green;
   color: white;
+  cursor: pointer;
 }
 
 .home-button {
@@ -71,7 +72,115 @@ body {
   background-color: lightskyblue;
 }
 
+.edit-button {
+  position: absolute;
+  top: 25px;
+  right: 90px;
+  border: 1px solid grey;
+  padding: 5px 10px;
+  background-color: lightskyblue;
+  text-decoration: none;
+}
+
+.edit-button:hover {
+  cursor: pointer;
+  color: white;
+}
+
+.delete-button {
+  position: absolute;
+  top: 25px;
+  right: 15px;
+  border: 1px solid grey;
+  padding: 5px 10px;
+  background-color: red;
+}
+
+.delete-button:hover {
+  cursor: pointer;
+  color: white;
+}
+
 .movie-warning {
   color: red;
   text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.form-container {
+  margin: 5px auto;
+  text-align: center;
+}
+
+input {
+  margin: 10px auto;
+  text-align: center;
+  width: 400px;
+}
+
+.update-btn {
+  width: 200px;
+  height: 50px;
+  margin: 5px auto;
+  text-align: center;
+  background-color: lightskyblue;
+  border: none;
+  border-radius: 50px;
+  font-size: 1rem;
+  color: white;
+  font-weight: bold;
+}
+
+.update-btn:hover {
+  background: dodgerblue;
+  cursor: pointer;
+}
+
+.title {
+  margin-top: 50px;
+}
+
+.areYouSure {
+  width: 60%;
+  margin: 3rem auto;
+}
+
+.areYouSure span {
+  color: dodgerblue;
+}
+
+.yes-btn {
+  display: inline-block;
+  margin: 0 2rem;
+  background-color: red;
+  border: none;
+  height: 2rem;
+  width: 7rem;
+  border-radius: 2rem;
+}
+
+.yes-btn:hover {
+  cursor: pointer;
+  color: white;
+}
+
+.no-btn {
+  display: inline-block;
+  margin: 0 2rem;
+  background-color: green;
+  border: none;
+  height: 2rem;
+  width: 7rem;
+  border-radius: 2rem;
+  text-align: center;
+}
+
+.no-btn:hover {
+  cursor: pointer;
+  color: white;
 }
